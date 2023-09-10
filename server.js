@@ -8,6 +8,7 @@ import categoryRoutes from "./routes/categoryRoutes.js";
 import productRoutes from "./routes/productRoutes.js";
 import cors from "cors";
 import path from "path";
+import {fileURLToPath} from 'url' 
 
 // configure env
 dotenv.config();
@@ -15,11 +16,13 @@ dotenv.config();
 // database config
 connectDB();
 
-// rest api
-// const app = express();
-app.use("*", function (req, res) {
-  res.sendFile(path.join(__dirname, "./client/build/index.html"));
-});
+//esmodule fix
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename)
+
+// rest object
+const app = express();
+
 
 // middleware
 app.use(cors());
